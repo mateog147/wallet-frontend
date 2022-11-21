@@ -1,14 +1,12 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Logo} from '../components/atoms/Logo';
 
 export const LaunchScreen = () => {
   return (
     <View>
       <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require('../assets/images/logo.png')}
-        />
+        <Logo customStyle={styles.logo} size={144} />
         <Text style={styles.title}>My App</Text>
       </View>
     </View>
@@ -25,8 +23,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    width: 144,
-    height: 144,
     position: 'absolute',
   },
   title: {
