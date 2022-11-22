@@ -6,7 +6,7 @@ interface Props {
   customStyle?: any;
 }
 
-export const Logo = ({size, customStyle}: Props) => {
+export const Isologo = ({size, customStyle}: Props) => {
   return (
     <Image
       style={getLogoStyles(size, customStyle)}

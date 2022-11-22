@@ -1,12 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Logo} from '../components/atoms/Logo';
+import {Isologo} from '../components/atoms/Isologo';
 
 export const LaunchScreen = () => {
   return (
     <View>
       <View style={styles.container}>
-        <Logo customStyle={styles.logo} size={144} />
+        <Isologo customStyle={styles.logo} size={144} />
         <Text style={styles.title}>My App</Text>
       </View>
     </View>
