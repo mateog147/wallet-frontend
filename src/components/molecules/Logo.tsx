@@ -14,9 +14,11 @@ export const Logo = () => {
 
 const styles = StyleSheet.create({
   logoContainer: {
+    flex: 4,
     width: '100%',
-    height: '40%',
+    height: 250,
     justifyContent: 'center',
     alignItems: 'center',
+    minHeight: 150,
   },
 });

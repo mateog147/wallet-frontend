@@ -3,15 +3,17 @@ import React from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
 import {LaunchScreen} from './src/screens/LaunchScreen';
 import {LoginUserScreen} from './src/screens/LoginUserScreen';
+import {NavigationContainer} from '@react-navigation/native';
 
 export const App = () => {
   return (
-    //Safe deja un margin es especialmente buneo en IOS
-    <SafeAreaView>
-      <StatusBar backgroundColor={'black'} />
-      {/* <LaunchScreen /> */}
-      <LoginUserScreen />
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView>
+        <StatusBar backgroundColor={'black'} />
+        {/* <LaunchScreen /> */}
+        <LoginUserScreen />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
