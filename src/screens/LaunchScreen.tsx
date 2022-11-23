@@ -1,8 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Isologo} from '../components/atoms/Isologo';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 
-export const LaunchScreen = () => {
+export const LaunchScreen = ({navigation}: MyStackScreenProps) => {
+  useEffect(() => {
+    setTimeout(() => navigation.navigate('LoginUserScreen'), 3000);
+  });
   return (
     <View>
       <View style={styles.container}>

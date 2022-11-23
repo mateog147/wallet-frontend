@@ -1,10 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Pantalla1Screen} from '../screens/Pantalla1Screen';
-import {Pantalla2Screen} from '../screens/Pantalla2Screen';
-import {Pantalla3Screen} from '../screens/Pantalla3Screen';
 import {LoginUserScreen} from '../screens/LoginUserScreen';
 import {LoginPasswordScreen} from '../screens/LoginPasswordScreen';
+import {LaunchScreen} from '../screens/LaunchScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +16,7 @@ export const StackNavigation = () => {
           shadowColor: 'transparent',
         },
       }}>
+      <Stack.Screen name="Launch" component={LaunchScreen} />
       <Stack.Screen name="LoginUserScreen" component={LoginUserScreen} />
       <Stack.Screen
         name="LoginPasswordScreen"

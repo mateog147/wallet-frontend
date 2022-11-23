@@ -12,7 +12,6 @@ export const AuthButton = ({text, icon, action}: Props) => {
 
   useEffect(() => {
     getIconSrc();
-    console.log('src', src);
   });
 
   const getIconSrc = () => {

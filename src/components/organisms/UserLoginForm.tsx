@@ -3,14 +3,23 @@ import React from 'react';
 import {LoginInput} from '../../components/atoms/LoginInput';
 import {MainButton} from '../atoms/MainButton';
 
-export const UserLoginForm = () => {
+interface Props {
+  action?: () => void;
+}
+export const UserLoginForm = ({action}: Props) => {
   const [text, onChangeText] = React.useState('Email or Username');
 
+  const writeAndNavigate = (txt: string) => {
+    onChangeText(txt);
+    if (action) {
+      action();
+    }
+  };
   return (
     <View style={styles.formContainer}>
       <Text style={styles.text}>Login or sign up for free.</Text>
       <LoginInput placeholder={text} action={onChangeText} />
-      <MainButton text="CONTINUE" action={() => console.log('test')} />
+      <MainButton text="CONTINUE" action={action} />
     </View>
   );
 };
