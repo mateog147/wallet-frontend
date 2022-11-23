@@ -9,11 +9,7 @@ interface Props {
 export const LoginInput = ({placeholder, action}: Props) => {
   return (
     <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        onChangeText={text => action(text)}
-        value={placeholder}
-      />
+      <TextInput style={styles.input} placeholder={placeholder} />
     </View>
   );
 };

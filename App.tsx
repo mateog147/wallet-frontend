@@ -1,17 +1,20 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
-import {LaunchScreen} from './src/screens/LaunchScreen';
-import {LoginUserScreen} from './src/screens/LoginUserScreen';
 import {NavigationContainer} from '@react-navigation/native';
+import {NavigationDrawer} from './src/navigation/NavigationDrawer';
+import {LaunchScreen} from './src/screens/LaunchScreen';
+import { LoginUserScreen } from './src/screens/LoginUserScreen';
+import { LoginPasswordScreen } from './src/screens/LoginPasswordScreen';
 
 export const App = () => {
   return (
     <NavigationContainer>
       <SafeAreaView>
-        <StatusBar backgroundColor={'black'} />
+        <StatusBar backgroundColor={'white'} />
         {/* <LaunchScreen /> */}
-        <LoginUserScreen />
+        {/* <LoginUserScreen /> */}
+        <LoginPasswordScreen />
       </SafeAreaView>
     </NavigationContainer>
   );

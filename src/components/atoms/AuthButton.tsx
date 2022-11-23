@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, Image, Alert} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
 
 interface Props {
   text: string;

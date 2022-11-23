@@ -3,14 +3,13 @@ import React from 'react';
 import {LoginInput} from '../../components/atoms/LoginInput';
 import {MainButton} from '../atoms/MainButton';
 
-export const UserLoginForm = () => {
-  const [text, onChangeText] = React.useState('Email or Username');
-
+export const PasswordLoginForm = () => {
+  const [text, onChangeText] = React.useState('Password');
   return (
     <View style={styles.formContainer}>
       <Text style={styles.text}>Login or sign up for free.</Text>
       <LoginInput placeholder={text} action={onChangeText} />
-      <MainButton text="CONTINUE" action={() => console.log('test')} />
+      <MainButton text="LOGIN" />
     </View>
   );
 };

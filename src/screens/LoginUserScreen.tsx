@@ -3,18 +3,21 @@ import React from 'react';
 import {Logo} from '../components/molecules/Logo';
 import {styles} from '../themes/WalletTheme';
 import {UserLoginForm} from '../components/organisms/UserLoginForm';
-import {AuthButton} from '../components/atoms/AuthButton';
+import {AuthMethodsButtons} from '../components/organisms/AuthMethodsButtons';
+import {HorizontalRule} from '../components/atoms/HorizontalRule';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 
 export const LoginUserScreen = () => {
   return (
     <View style={styles.main}>
       <Logo />
       <UserLoginForm />
-
-      <View>
-        <AuthButton icon="google" text="Sign in with Google" />
-        <AuthButton icon="apple" text="Sign in with Apple" />
-      </View>
+      <HorizontalRule text="register" />
+      <AuthMethodsButtons />
+      <Button
+        title="Ir a Pantalla 2"
+        onPress={() => console.log('LoginPasswordScreen')}
+      />
     </View>
   );
 };
