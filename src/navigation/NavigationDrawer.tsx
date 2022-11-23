@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {View, Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {MyDrawerContentComponentProps} from '../interfaces/MyDrawerContentComponentProps';
 import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 import {StackNavigation} from './StackNavigation';
+import {TabNavigation} from './TabNavigation';
 
 function Feed({navigation}: MyStackScreenProps) {
   return (
@@ -27,14 +26,21 @@ const Drawer = createDrawerNavigator();
 export function MyDrawer() {
   return (
     <Drawer.Navigator useLegacyImplementation initialRouteName="home">
-      <Drawer.Screen name="Feed" component={Feed} />
-      <Drawer.Screen name="Notifications" component={Notifications} />
+      <Drawer.Screen name="Cambiar contraseña" component={Feed} />
+      <Drawer.Screen name="Cambiar tema del app" component={Notifications} />
       <Drawer.Screen
         name="home"
         component={StackNavigation}
         options={{
           drawerItemStyle: {display: 'none'},
           headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="MyApp"
+        component={TabNavigation}
+        options={{
+          drawerItemStyle: {display: 'none'},
         }}
       />
     </Drawer.Navigator>

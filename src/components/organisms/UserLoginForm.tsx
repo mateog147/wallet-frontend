@@ -9,12 +9,6 @@ interface Props {
 export const UserLoginForm = ({action}: Props) => {
   const [text, onChangeText] = React.useState('Email or Username');
 
-  const writeAndNavigate = (txt: string) => {
-    onChangeText(txt);
-    if (action) {
-      action();
-    }
-  };
   return (
     <View style={styles.formContainer}>
       <Text style={styles.text}>Login or sign up for free.</Text>
