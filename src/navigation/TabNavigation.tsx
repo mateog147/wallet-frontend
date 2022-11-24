@@ -44,7 +44,7 @@ export const TabNavigation = () => {
         options={{
           tabBarLabel: 'Loan',
           tabBarIcon: ({color, size}) => (
-            <FontAwesome5 name="hand-holding-usd" size={size} color={color} />
+            <FontAwesome5 name="hand-holding-heart" size={size} color={color} />
           ),
           tabBarLabelStyle: {
             fontSize: 15,
