@@ -5,6 +5,6 @@ export const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'column',
     backgroundColor: 'white',
-    padding: 2,
   },
+  listContainer: {marginTop: 10},
 });

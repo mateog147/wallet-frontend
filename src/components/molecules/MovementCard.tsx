@@ -1,35 +1,27 @@
-import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Movement} from '../../interfaces/Movement';
+import {CircleImage} from '../atoms/CircleImage';
+import useCurrency from '../../hooks/UseCurrency';
 
-export const MovementCard = ({title, amount}: Movement) => {
+export const MovementCard = ({title, amount, date}: Movement) => {
+  const {currencyFormat} = useCurrency();
   return (
     <View style={stl.item}>
-      <View style={stl.imgContainer}>
-        <Image
-          style={stl.img}
-          source={require('../../assets/images/logo.png')}
-        />
+      <CircleImage src={require('../../assets/images/logo.png')} />
+      <View style={stl.textContainer}>
+        <Text style={stl.title} numberOfLines={1}>
+          {title}
+        </Text>
+        <Text style={stl.date}>{date}</Text>
       </View>
-      <Text style={stl.title}>{title}</Text>
-      <Text style={stl.title}>{amount}</Text>
+
+      <Text style={stl.amount}>{currencyFormat(amount ? amount : 0)}</Text>
     </View>
   );
 };
 
 const stl = StyleSheet.create({
-  img: {
-    height: 26,
-    width: 26,
-  },
-  imgContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 100,
-    width: 50,
-    height: 50,
-    backgroundColor: '#F5F5F6',
-  },
   item: {
     height: 72,
     alignItems: 'center',
@@ -37,7 +29,23 @@ const stl = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
   },
+  textContainer: {
+    flex: 1,
+    marginLeft: 10,
+  },
   title: {
     fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+    paddingRight: 5,
+  },
+  date: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#666666',
+  },
+  amount: {
+    fontSize: 18,
+    fontWeight: '400'
   },
 });

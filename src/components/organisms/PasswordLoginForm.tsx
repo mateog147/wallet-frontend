@@ -11,7 +11,7 @@ export const PasswordLoginForm = ({action}: Props) => {
   return (
     <View style={styles.formContainer}>
       <Text style={styles.text}>Login or sign up for free.</Text>
-      <LoginInput placeholder={text} action={onChangeText} />
+      <LoginInput isPassword={true} placeholder={text} action={onChangeText} />
       <MainButton text="LOGIN" action={action} />
     </View>
   );

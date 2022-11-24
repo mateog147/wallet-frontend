@@ -5,7 +5,7 @@ import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 
 export const LaunchScreen = ({navigation}: MyStackScreenProps) => {
   useEffect(() => {
-    setTimeout(() => navigation.navigate('LoginUserScreen'), 3000);
+    setTimeout(() => navigation.navigate('LoginUserScreen'), 1000);
   });
   return (
     <View>

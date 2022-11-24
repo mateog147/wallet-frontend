@@ -39,6 +39,7 @@ export function MyDrawer() {
         options={{
           drawerItemStyle: {display: 'none'},
           headerShown: false,
+          swipeEnabled: false,
         }}
       />
       <Drawer.Screen

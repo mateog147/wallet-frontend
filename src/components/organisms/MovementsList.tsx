@@ -1,4 +1,4 @@
-import {FlatList, ListRenderItemInfo} from 'react-native';
+import {FlatList, ListRenderItemInfo, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Movement} from '../../interfaces/Movement';
 import {MovementCard} from '../molecules/MovementCard';
@@ -9,7 +9,7 @@ interface Props {
 
 export const MovementsList = ({data}: Props) => {
   const renderItem = ({item}: ListRenderItemInfo<Movement>) => (
-    <MovementCard title={item.title} amount={item.amount} />
+    <MovementCard title={item.title} amount={item.amount} date={item.date} />
   );
   return (
     <FlatList

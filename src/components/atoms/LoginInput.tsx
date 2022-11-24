@@ -3,13 +3,18 @@ import {StyleSheet, TextInput, View} from 'react-native';
 
 interface Props {
   placeholder?: string;
+  isPassword?: boolean;
   action: (textNumber: string) => void;
 }
 
-export const LoginInput = ({placeholder, action}: Props) => {
+export const LoginInput = ({placeholder, action, isPassword}: Props) => {
   return (
     <View style={styles.inputContainer}>
-      <TextInput style={styles.input} placeholder={placeholder} />
+      <TextInput
+        style={styles.input}
+        placeholder={placeholder}
+        secureTextEntry={isPassword ? isPassword : false}
+      />
     </View>
   );
 };
