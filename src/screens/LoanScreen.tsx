@@ -1,18 +1,17 @@
-import {Text, View, Image} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {MainButton} from '../components/atoms/MainButton';
+import {AmountAvailable} from '../components/molecules/AmountAvailable';
+import {FormInput} from '../components/molecules/FormInput';
+import {styles} from '../themes/WalletTheme';
 
 export const LoanScreen = () => {
   return (
-    <View>
-      <View style={{flexDirection: 'row'}}>
-        <Image source={require('../assets/icons/mac-icon.png')} />
-        <View>
-          <Text>Available</Text>
-          <Text>$ 50.000.000</Text>
-        </View>
-      </View>
-      <MainButton text="Apply for loan" />
+    <View style={styles.main}>
+      <AmountAvailable number={50000000} />
+      <FormInput icon="credit-card" placeholder="Amount" />
+      <FormInput icon="message" placeholder="Reason" />
+      <MainButton text="Apply for loan" width={92} />
     </View>
   );
 };
