@@ -21,6 +21,27 @@ export function MyDrawer() {
         <SideMenu {...props} />
       )}>
       <Drawer.Screen
+        name="MyApp"
+        component={TabNavigation}
+        options={{
+          headerTintColor: 'white',
+          title: 'MyApp',
+          drawerItemStyle: {display: 'none'},
+          headerStyle: {
+            backgroundColor: '#1554F6',
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="home"
+        component={StackNavigation}
+        options={{
+          drawerItemStyle: {display: 'none'},
+          headerShown: false,
+          swipeEnabled: false,
+        }}
+      />
+      <Drawer.Screen
         options={{
           headerTintColor: 'white',
           title: 'MyApp',
@@ -41,27 +62,6 @@ export function MyDrawer() {
         }}
         name="ThemesScreen"
         component={ThemesScreen}
-      />
-      <Drawer.Screen
-        name="home"
-        component={StackNavigation}
-        options={{
-          drawerItemStyle: {display: 'none'},
-          headerShown: false,
-          swipeEnabled: false,
-        }}
-      />
-      <Drawer.Screen
-        name="MyApp"
-        component={TabNavigation}
-        options={{
-          headerTintColor: 'white',
-          title: 'MyApp',
-          drawerItemStyle: {display: 'none'},
-          headerStyle: {
-            backgroundColor: '#1554F6',
-          },
-        }}
       />
     </Drawer.Navigator>
   );

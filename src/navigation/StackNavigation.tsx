@@ -4,7 +4,6 @@ import {LoginUserScreen} from '../screens/LoginUserScreen';
 import {LoginPasswordScreen} from '../screens/LoginPasswordScreen';
 import {LaunchScreen} from '../screens/LaunchScreen';
 
-
 const Stack = createStackNavigator();
 
 export const StackNavigation = () => {

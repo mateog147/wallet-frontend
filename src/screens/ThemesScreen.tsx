@@ -12,21 +12,21 @@ export const ThemesScreen = () => {
         <Text>You can always change this at any time</Text>
       </View>
       <View style={styles.row}>
-        <ThemeCard label="Arts & Culture" icon="music-note" />
-        <ThemeCard label="Arts & Culture" icon="music-note" />
-        <ThemeCard label="Arts & Culture" icon="music-note" />
+        <ThemeCard label="Arts & Culture" icon="theater-comedy" />
+        <ThemeCard label="Food & Drinks" icon="local-pizza" />
+        <ThemeCard label="Gaming" icon="videogame-asset" />
       </View>
 
       <View style={styles.row}>
-        <ThemeCard label="Arts & Culture" icon="music-note" />
-        <ThemeCard label="Arts & Culture" icon="music-note" />
-        <ThemeCard label="Arts & Culture" icon="music-note" />
+        <ThemeCard label="Music" icon="music-note" />
+        <ThemeCard label="Food & Drinks" icon="local-pizza" />
+        <ThemeCard label="Nature" icon="eco" />
       </View>
 
       <View style={styles.row}>
-        <ThemeCard label="Arts & Culture" icon="music-note" />
-        <ThemeCard label="Arts & Culture" icon="music-note" />
-        <ThemeCard label="Arts & Culture" icon="music-note" />
+        <ThemeCard label="Fashion" icon="shopping-bag" />
+        <ThemeCard label="Technology" icon="computer" />
+        <ThemeCard label="Travel" icon="airplanemode-active" />
       </View>
 
       <View style={styles.horizontalBtnContainer}>
