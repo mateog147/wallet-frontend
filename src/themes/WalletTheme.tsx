@@ -19,6 +19,12 @@ export const styles = StyleSheet.create({
     fontSize: 36,
     color: 'rgba(0, 0, 0, 0.87)',
   },
+  h2: {
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 22,
+    color: 'rgba(0, 0, 0, 0.87)',
+  },
 
   h3: {
     fontFamily: 'Roboto',
@@ -35,6 +41,13 @@ export const styles = StyleSheet.create({
   verticalBtnContainer: {
     height: 140,
     justifyContent: 'space-evenly',
+  },
+  horizontalBtnContainer: {
+    alignSelf: 'center',
+    width: '95%',
+    flexDirection: 'row',
+    height: 140,
+    justifyContent: 'space-between',
   },
 
   sideMenuContainer: {
@@ -57,5 +70,11 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     color: 'black',
     marginBottom: 60,
+  },
+  row: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    padding: 6,
   },
 });
