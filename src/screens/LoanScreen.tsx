@@ -9,7 +9,11 @@ export const LoanScreen = () => {
   return (
     <View style={styles.main}>
       <AmountAvailable number={50000000} />
-      <FormInput icon="credit-card" placeholder="Amount" />
+      <FormInput
+        icon="credit-card"
+        placeholder="Amount"
+        errorMsg="Amount not Avaiable"
+      />
       <FormInput icon="message" placeholder="Reason" />
       <MainButton text="Apply for loan" width={92} />
     </View>

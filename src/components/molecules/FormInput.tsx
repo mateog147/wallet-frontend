@@ -7,8 +7,9 @@ interface Props {
   icon?: string;
   placeholder: string;
   isInvalid?: boolean;
+  errorMsg?: string;
 }
-export const FormInput = ({icon, placeholder, isInvalid}: Props) => {
+export const FormInput = ({icon, placeholder, isInvalid, errorMsg}: Props) => {
   const styles = StyleSheet.create({
     container: {flexDirection: 'row', alignSelf: 'center', width: '92%'},
     textContainer: {flexDirection: 'column', flex: 1},
@@ -21,7 +22,7 @@ export const FormInput = ({icon, placeholder, isInvalid}: Props) => {
       <IconMI iconName={icon} />
       <View style={styles.textContainer}>
         <FormTextInput placeholder={placeholder} />
-        <Text style={styles.errorTxt}>Amount not available</Text>
+        <Text style={styles.errorTxt}>{errorMsg ? errorMsg : 'Error'}</Text>
       </View>
     </View>
   );

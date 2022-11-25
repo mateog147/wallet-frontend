@@ -13,8 +13,16 @@ export const PaymentScreen = () => {
         <Text style={styles.h1}>{currencyFormat(balance)}</Text>
         <Text style={styles.h3}>Account balance</Text>
       </View>
-      <FormInput icon="person" placeholder="User’s email or phone number" />
-      <FormInput icon="credit-card" placeholder="Amount" />
+      <FormInput
+        icon="person"
+        placeholder="User’s email or phone number"
+        errorMsg="non-existent user account"
+      />
+      <FormInput
+        icon="credit-card"
+        placeholder="Amount"
+        errorMsg="The amount exceeds the allowable limit"
+      />
       <FormInput icon="message" placeholder="Reason" />
       <MainButton text="Send payment" width={92} />
     </View>

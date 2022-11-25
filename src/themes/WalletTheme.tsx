@@ -26,4 +26,14 @@ export const styles = StyleSheet.create({
     fontSize: 22,
     color: 'rgba(0, 0, 0, 0.87)',
   },
+  basicIputsContainer: {
+    marginTop: 25,
+    height: '50%',
+    maxHeight: 280,
+    justifyContent: 'space-between',
+  },
+  verticalBtnContainer: {
+    height: 140,
+    justifyContent: 'space-evenly',
+  },
 });
