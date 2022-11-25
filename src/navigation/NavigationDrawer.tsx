@@ -5,12 +5,21 @@ import {TabNavigation} from './TabNavigation';
 import {ChangePasswordScreen} from '../screens/ChangePasswordScreen';
 import {ThemesScreen} from '../screens/ThemesScreen';
 import {TypedNavigator} from '@react-navigation/native';
+import {SideMenu} from '../components/organisms/SideMenu';
+import {MyDrawerContentComponentProps} from '../interfaces/MyDrawerContentComponentProps';
 
 const Drawer: TypedNavigator<any, any, any, any, any> = createDrawerNavigator();
 
 export function MyDrawer() {
   return (
-    <Drawer.Navigator initialRouteName="home">
+    <Drawer.Navigator
+      initialRouteName="home"
+      screenOptions={{
+        unmountOnBlur: true,
+      }}
+      drawerContent={(props: MyDrawerContentComponentProps) => (
+        <SideMenu {...props} />
+      )}>
       <Drawer.Screen
         options={{
           headerTintColor: 'white',
@@ -19,7 +28,7 @@ export function MyDrawer() {
             backgroundColor: '#1554F6',
           },
         }}
-        name="Change your password"
+        name="ChangePasswordScreen"
         component={ChangePasswordScreen}
       />
       <Drawer.Screen
@@ -30,7 +39,7 @@ export function MyDrawer() {
             backgroundColor: '#1554F6',
           },
         }}
-        name="Change app theme"
+        name="ThemesScreen"
         component={ThemesScreen}
       />
       <Drawer.Screen

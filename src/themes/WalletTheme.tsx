@@ -36,4 +36,26 @@ export const styles = StyleSheet.create({
     height: 140,
     justifyContent: 'space-evenly',
   },
+
+  sideMenuContainer: {
+    height: '100%',
+    flexDirection: 'column',
+    padding: 16,
+    backgroundColor: 'white',
+  },
+  userImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 600,
+    alignSelf: 'center',
+    margin: 10,
+    marginTop: 30,
+  },
+  textAccountName: {
+    fontSize: 23,
+    alignSelf: 'center',
+    fontWeight: '500',
+    color: 'black',
+    marginBottom: 60,
+  },
 });
