@@ -3,9 +3,9 @@ import React, {useEffect} from 'react';
 import {Logo} from '../components/molecules/Logo';
 import {styles} from '../themes/WalletTheme';
 import {UserLoginForm} from '../components/organisms/UserLoginForm';
-import {AuthMethodsButtons} from '../components/organisms/AuthMethodsButtons';
-import {HorizontalRule} from '../components/atoms/HorizontalRule';
 import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
+import useSession from '../hooks/UseSession';
+import {useAuth0} from 'react-native-auth0';
 
 export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
   useEffect(() => {
@@ -31,14 +31,24 @@ export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
     );
     return () => backHandler.remove();
   }, [navigation]);
+
+  const {user} = useAuth0();
+  const {onLogin} = useSession();
+  const loggedIn = user !== undefined && user !== null;
+
   return (
     <View style={styles.main}>
       <Logo />
       <UserLoginForm
-        action={() => navigation.navigate('LoginPasswordScreen')}
+        //action={() => navigation.navigate('LoginPasswordScreen')}
+        action={() => {
+          if (!loggedIn) {
+            onLogin().then(() => navigation.navigate('MyApp'));
+          } else {
+            navigation.navigate('MyApp');
+          }
+        }}
       />
-      <HorizontalRule text="register" />
-      <AuthMethodsButtons />
     </View>
   );
 };

@@ -67,6 +67,7 @@ export const styles = StyleSheet.create({
   textAccountName: {
     fontSize: 23,
     alignSelf: 'center',
+    textAlign: 'center',
     fontWeight: '500',
     color: 'black',
     marginBottom: 60,

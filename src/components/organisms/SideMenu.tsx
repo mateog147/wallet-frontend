@@ -4,18 +4,16 @@ import {MyDrawerContentComponentProps} from '../../interfaces/MyDrawerContentCom
 import {Isologo} from '../atoms/Isologo';
 import {IconButton} from '../molecules/IconButton';
 import {styles} from '../../themes/WalletTheme';
+import useSession from '../../hooks/UseSession';
+import {useAuth0} from 'react-native-auth0';
+import {UserPicture} from '../molecules/UserPicture';
 
 export const SideMenu = ({navigation}: MyDrawerContentComponentProps) => {
+  const {onLogout} = useSession();
+  const {user} = useAuth0();
   return (
     <View style={styles.sideMenuContainer}>
-      <Image
-        source={{
-          uri: 'https://pbs.twimg.com/profile_images/1282037764481937408/7PrKXHBW_400x400.jpg',
-        }}
-        style={styles.userImage}
-      />
-      <Text style={styles.textAccountName}>Lalo Landa</Text>
-
+      <UserPicture image={user?.picture} name={user?.name} />
       <IconButton
         text="Change password"
         icon="settings"
@@ -26,7 +24,7 @@ export const SideMenu = ({navigation}: MyDrawerContentComponentProps) => {
         icon="bookmark"
         action={() => navigation.navigate('ThemesScreen')}
       />
-      <IconButton icon="close" text="Logout" />
+      <IconButton icon="close" text="Logout" action={onLogout} />
 
       <Isologo
         // eslint-disable-next-line react-native/no-inline-styles
