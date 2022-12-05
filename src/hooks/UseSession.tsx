@@ -4,9 +4,10 @@ const useSession = () => {
   const {authorize, clearSession, getCredentials} = useAuth0();
   const onLogin = async () => {
     try {
-      await authorize({scope: 'openid profile email'});
-      const res = await getCredentials();
+      const test = await authorize({scope: 'openid profile email'});
+      //const res = await getCredentials();
       //console.log(JSON.stringify(res));
+      return await test;
     } catch (e) {
       console.log(e);
     }

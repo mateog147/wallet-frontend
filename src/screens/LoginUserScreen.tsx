@@ -6,8 +6,13 @@ import {UserLoginForm} from '../components/organisms/UserLoginForm';
 import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 import useSession from '../hooks/UseSession';
 import {useAuth0} from 'react-native-auth0';
+import {ClientService} from '../store/services/ClientService';
+import {useDispatch} from 'react-redux';
+import {setClient} from '../store/reducers/client';
 
 export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
@@ -32,23 +37,31 @@ export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
     return () => backHandler.remove();
   }, [navigation]);
 
+  const service = ClientService();
   const {user} = useAuth0();
   const {onLogin} = useSession();
   const loggedIn = user !== undefined && user !== null;
 
+  const navigateTo = async () => {
+    const cli = await service.getClient(user);
+    if ((await cli).phone !== undefined && (await cli).phone !== null) {
+      dispatch(setClient(cli));
+      navigation.navigate('MyApp');
+    } else {
+      navigation.navigate('RegisterFormScreen');
+    }
+  };
+  const loginManager = async () => {
+    if (!loggedIn) {
+      onLogin().then(() => navigateTo());
+    } else {
+      await navigateTo();
+    }
+  };
   return (
     <View style={styles.main}>
       <Logo />
-      <UserLoginForm
-        //action={() => navigation.navigate('LoginPasswordScreen')}
-        action={() => {
-          if (!loggedIn) {
-            onLogin().then(() => navigation.navigate('MyApp'));
-          } else {
-            navigation.navigate('MyApp');
-          }
-        }}
-      />
+      <UserLoginForm action={() => loginManager()} />
     </View>
   );
 };
