@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native';
+import {Text, View, Alert} from 'react-native';
 import React from 'react';
 import {useAuth0} from 'react-native-auth0';
 import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
@@ -9,6 +9,7 @@ import {useDispatch} from 'react-redux';
 import {styles} from '../themes/WalletTheme';
 import useValidName from '../hooks/UseValidName';
 import {setClient} from '../store/reducers/client';
+import {ClientDto} from '../interfaces/ClientDto';
 
 export const RegisterFormScreen = ({navigation}: MyStackScreenProps) => {
   const [nameText, onChangeNameText] = React.useState('');
@@ -19,18 +20,20 @@ export const RegisterFormScreen = ({navigation}: MyStackScreenProps) => {
   const service = ClientService();
 
   const createAndGoToAccount = async () => {
-    const cli = await service.createClient({
-      fullName: isValidName(user.name) ? user.name : nameText,
-      email: user.email,
-      phone: phoneText,
-      photo: user.picture,
-    });
-    if (await cli) {
-      dispatch(setClient(cli));
-      navigation.navigate('MyApp');
-    } else {
-      navigation.navigate('home');
-    }
+    service
+      .createClient({
+        fullName: isValidName(user.name) ? user.name : nameText,
+        email: user.email,
+        phone: phoneText,
+        photo: user.picture,
+      })
+      .then((client: ClientDto) => dispatch(setClient(client)))
+      .catch((error: unknown) =>
+        Alert.alert(
+          'We have problems with your registry please try again later',
+        ),
+      );
+    navigation.navigate('MyApp');
   };
 
   return (
