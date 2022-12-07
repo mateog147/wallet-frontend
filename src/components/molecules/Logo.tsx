@@ -3,11 +3,14 @@ import React from 'react';
 import {Isologo} from '../atoms/Isologo';
 import {Logotype} from '../atoms/Logotype';
 
-export const Logo = () => {
+interface Props {
+  size?: number;
+}
+export const Logo = ({size}: Props) => {
   return (
     <View style={styles.logoContainer}>
-      <Isologo size={60} />
-      <Logotype />
+      <Isologo size={size ? size : 60} />
+      <Logotype size={size ? size / 3 : 20} />
     </View>
   );
 };

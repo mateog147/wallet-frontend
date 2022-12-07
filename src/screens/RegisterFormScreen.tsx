@@ -1,42 +1,60 @@
-import {Button, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
 import {useAuth0} from 'react-native-auth0';
 import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 import {FormInput} from '../components/molecules/FormInput';
 import {MainButton} from '../components/atoms/MainButton';
 import {ClientService} from '../store/services/ClientService';
+import {useDispatch} from 'react-redux';
+import {styles} from '../themes/WalletTheme';
+import useValidName from '../hooks/UseValidName';
+import {setClient} from '../store/reducers/client';
 
 export const RegisterFormScreen = ({navigation}: MyStackScreenProps) => {
+  const [nameText, onChangeNameText] = React.useState('');
+  const [phoneText, onChangePhoneText] = React.useState('');
+  const dispatch = useDispatch();
   const {user} = useAuth0();
-  const loggedIn = user !== undefined && user !== null;
+  const {isValidName} = useValidName();
   const service = ClientService();
 
+  const createAndGoToAccount = async () => {
+    const cli = await service.createClient({
+      fullName: isValidName(user.name) ? user.name : nameText,
+      email: user.email,
+      phone: phoneText,
+      photo: user.picture,
+    });
+    if (await cli) {
+      dispatch(setClient(cli));
+      navigation.navigate('MyApp');
+    } else {
+      navigation.navigate('home');
+    }
+  };
+
   return (
-    <View>
-      <Text>RegisterForm</Text>
-      <Text>Screen</Text>
-
-      {loggedIn && <Text>You are logged in as {user.name}</Text>}
-      {!loggedIn && <Text>You are not logged in</Text>}
-
-      <Button title="Print" onPress={() => console.log(user)} />
-      <Button title="Navigate" onPress={() => navigation.navigate('MyApp')} />
-
+    <View style={[styles.main, styles.container]}>
+      <Text style={styles.h2}>Please fill your personal Info</Text>
       <FormInput
+        value={nameText}
+        onChangeInput={onChangeNameText}
         icon="person"
-        placeholder="User’s email or phone number"
-        errorMsg="non-existent user account"
+        placeholder="Full Name"
+        errorMsg="Not Valid"
       />
       <FormInput
-        icon="credit-card"
-        placeholder="Amount"
-        errorMsg="The amount exceeds the allowable limit"
+        value={phoneText}
+        onChangeInput={onChangePhoneText}
+        icon="phone"
+        placeholder="Phone"
+        errorMsg="Not Valid"
+        isNumeric={true}
       />
-      <FormInput icon="message" placeholder="Reason" />
       <MainButton
-        text="Create User"
+        text="Send Info"
         width={92}
-        action={() => service.createClient(user)}
+        action={() => createAndGoToAccount()}
       />
     </View>
   );

@@ -1,4 +1,4 @@
-import {Alert, BackHandler, View} from 'react-native';
+import {Alert, BackHandler, View, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import {Logo} from '../components/molecules/Logo';
 import {styles} from '../themes/WalletTheme';
@@ -6,12 +6,17 @@ import {UserLoginForm} from '../components/organisms/UserLoginForm';
 import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 import useSession from '../hooks/UseSession';
 import {useAuth0} from 'react-native-auth0';
-import {ClientService} from '../store/services/ClientService';
-import {useDispatch} from 'react-redux';
-import {setClient} from '../store/reducers/client';
 
 export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
-  const dispatch = useDispatch();
+  const {user} = useAuth0();
+  const {onLogin} = useSession();
+  const loggedIn = user !== undefined && user !== null;
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigation.navigate('WelcomeScreen');
+    }
+  });
 
   useEffect(() => {
     const backAction = () => {
@@ -37,31 +42,23 @@ export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
     return () => backHandler.remove();
   }, [navigation]);
 
-  const service = ClientService();
-  const {user} = useAuth0();
-  const {onLogin} = useSession();
-  const loggedIn = user !== undefined && user !== null;
-
-  const navigateTo = async () => {
-    const cli = await service.getClient(user);
-    if ((await cli).phone !== undefined && (await cli).phone !== null) {
-      dispatch(setClient(cli));
-      navigation.navigate('MyApp');
-    } else {
-      navigation.navigate('RegisterFormScreen');
-    }
-  };
-  const loginManager = async () => {
-    if (!loggedIn) {
-      onLogin().then(() => navigateTo());
-    } else {
-      await navigateTo();
-    }
-  };
-  return (
-    <View style={styles.main}>
-      <Logo />
-      <UserLoginForm action={() => loginManager()} />
-    </View>
-  );
+  if (user === null || user === undefined) {
+    return (
+      <View style={styles.main}>
+        <Logo size={120} />
+        <UserLoginForm
+          action={() => {
+            onLogin();
+            navigation.navigate('WelcomeScreen');
+          }}
+        />
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.main}>
+        <Text>Ups, Try again later</Text>
+      </View>
+    );
+  }
 };
