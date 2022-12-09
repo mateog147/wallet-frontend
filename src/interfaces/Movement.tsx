@@ -1,7 +1,9 @@
 export interface Movement {
   id?: string;
-  title?: string;
+  accIdIncome?: string;
+  accIdOutcome?: string;
+  reason?: string;
   amount?: number;
-  image?: string;
-  date?: string;
+  fees?: number;
+  dateTime?: Date;
 }

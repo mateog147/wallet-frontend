@@ -20,7 +20,7 @@ export const WelcomeScreen = ({navigation}: MyStackScreenProps) => {
     const cli = await service.getClient(user);
 
     if (cli) {
-      if ((await cli).phone !== undefined && (await cli).phone !== null) {
+      if (cli.phone !== undefined && cli.phone !== null) {
         dispatch(setClient(cli));
         navigation.navigate('MyApp');
       } else {

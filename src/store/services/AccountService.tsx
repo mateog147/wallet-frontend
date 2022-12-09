@@ -1,5 +1,5 @@
 import {Movement} from '../../interfaces/Movement';
-export const MovementService = () => {
+export const AccountService = () => {
   return {
     getAllMovement: () => {
       const DATA: Movement[] = [

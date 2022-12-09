@@ -1,19 +1,23 @@
 import {ActivityIndicator, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {styles} from '../themes/WalletTheme';
 import {Movement} from '../interfaces/Movement';
-import {MovementService} from '../store/services/MovementService';
+import {AccountService} from '../store/services/AccountService';
 import {MovementsList} from '../components/organisms/MovementsList';
 import {AccountBalance} from '../components/molecules/AccountBalance';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
 
-const service = MovementService();
+const service = AccountService();
 export const AccountScreen = () => {
   const data: Movement[] = service.getAllMovement();
   const {client} = useSelector((state: RootState) => state.client);
 
-  if (client.id === undefined || client.id === 'null') {
+  useEffect(() => {
+    console.log('Account :>> ');
+  }, []);
+
+  if (client.id === undefined || client.id === null) {
     return <ActivityIndicator size="large" />;
   } else {
     return (

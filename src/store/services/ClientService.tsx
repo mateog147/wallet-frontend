@@ -16,7 +16,7 @@ export const ClientService = () => {
       }
     },
 
-    createClient: async (newUser: CreateClientDto) => {
+    createClient: async (newUser: CreateClientDto): Promise<ClientDto> => {
       let clientCreated: ClientDto;
       const response: Response = await fetch(URL, {
         method: 'POST',

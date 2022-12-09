@@ -4,16 +4,16 @@ import {Movement} from '../../interfaces/Movement';
 import {CircleImage} from '../atoms/CircleImage';
 import useCurrency from '../../hooks/UseCurrency';
 
-export const MovementCard = ({title, amount, date}: Movement) => {
+export const MovementCard = ({reason, amount, dateTime}: Movement) => {
   const {currencyFormat} = useCurrency();
   return (
     <View style={stl.item}>
       <CircleImage src={require('../../assets/images/logo.png')} />
       <View style={stl.textContainer}>
         <Text style={stl.title} numberOfLines={1}>
-          {title}
+          {reason}
         </Text>
-        <Text style={stl.date}>{date}</Text>
+        <Text style={stl.date}>{dateTime}</Text>
       </View>
 
       <Text style={stl.amount}>{currencyFormat(amount ? amount : 0)}</Text>
@@ -46,6 +46,6 @@ const stl = StyleSheet.create({
   },
   amount: {
     fontSize: 18,
-    fontWeight: '400'
+    fontWeight: '400',
   },
 });
