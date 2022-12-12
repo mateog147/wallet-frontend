@@ -12,6 +12,8 @@ export const MovementsList = () => {
       reason={item.reason}
       amount={item.amount}
       dateTime={item.dateTime}
+      accIdIncome={item.accIdIncome}
+      accUserId={account.id}
     />
   );
   if (account.id === undefined && account.id === null) {
