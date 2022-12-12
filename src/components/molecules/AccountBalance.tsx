@@ -1,21 +1,26 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import useCurrency from '../../hooks/UseCurrency';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/store';
 
-interface Props {
-  balance?: number;
-}
-
-export const AccountBalance = ({balance}: Props) => {
+export const AccountBalance = () => {
+  const {account} = useSelector((state: RootState) => state.account);
   const {currencyFormat} = useCurrency();
-  return (
-    <View style={stl.container}>
-      <Text style={stl.balance} numberOfLines={1} adjustsFontSizeToFit={true}>
-        {currencyFormat(balance ? balance : 0)}
-      </Text>
-      <Text style={stl.txt}>Balance in your account</Text>
-    </View>
-  );
+
+  if (account.id === undefined && account.id === null) {
+    return <ActivityIndicator size="large" />;
+  } else {
+    const balance = account.balance;
+    return (
+      <View style={stl.container}>
+        <Text style={stl.balance} numberOfLines={1} adjustsFontSizeToFit={true}>
+          {currencyFormat(balance ? balance : 0)}
+        </Text>
+        <Text style={stl.txt}>Balance in your account</Text>
+      </View>
+    );
+  }
 };
 
 const stl = StyleSheet.create({

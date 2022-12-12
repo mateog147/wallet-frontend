@@ -1,29 +1,17 @@
-import {Movement} from '../../interfaces/Movement';
+import {AccountDto} from '../../interfaces/AccountDto';
 export const AccountService = () => {
+  const URL = 'http://192.168.1.11:3000/api/v1/account';
   return {
-    getAllMovement: () => {
-      const DATA: Movement[] = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'Pago de salario',
-          amount: 3650000,
-          date: new Date(Date.now()).toUTCString(),
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Arriendo',
-          amount: 850000,
-          date: new Date(Date.now()).toUTCString(),
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Prestamo',
-          amount: 900000,
-          date: new Date(Date.now()).toUTCString(),
-        },
-      ];
-
-      return DATA;
+    getAccount: async (clientId: string): Promise<AccountDto | undefined> => {
+      try {
+        const response: Response = await fetch(`${URL}/${clientId}`);
+        console.log(response.status);
+        const data: AccountDto = await response.json();
+        console.log(data);
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
     },
   };
 };

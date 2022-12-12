@@ -9,8 +9,7 @@ export const ClientService = () => {
         const response: Response = await fetch(`${URL}/${user.email}`);
         console.log(response.status);
         const data: ClientDto = await response.json();
-        console.log(data);
-        return await data;
+        return data;
       } catch (error) {
         console.error(error);
       }
@@ -27,7 +26,6 @@ export const ClientService = () => {
         body: JSON.stringify(newUser),
       });
       const data = await response.json();
-      //console.log('data :>> ', data);
       clientCreated = {
         id: data.id,
         fullName: data.fullName,

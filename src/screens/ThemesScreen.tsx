@@ -3,8 +3,9 @@ import React from 'react';
 import {ThemeCard} from '../components/molecules/ThemeCard';
 import {styles} from '../themes/WalletTheme';
 import {MainButton} from '../components/atoms/MainButton';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 
-export const ThemesScreen = () => {
+export const ThemesScreen = ({navigation}: MyStackScreenProps) => {
   return (
     <ScrollView style={styles.main}>
       <View style={styles.titlesContainer}>
@@ -35,6 +36,7 @@ export const ThemesScreen = () => {
           color="#1554F7"
           text="Cancel"
           width={48}
+          action={() => navigation.navigate('MyApp')}
         />
         <MainButton text="Accept" width={48} />
       </View>

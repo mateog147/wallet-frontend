@@ -1,13 +1,13 @@
 export interface ClientDto {
-  id: string;
+  id?: string;
 
-  fullName: string;
+  fullName?: string;
 
-  email: string;
+  email?: string;
 
-  phone: string;
+  phone?: string;
 
-  photo: string;
+  photo?: string;
 
-  appColor: string;
+  appColor?: string;
 }

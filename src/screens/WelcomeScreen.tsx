@@ -6,22 +6,30 @@ import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 import {useAuth0} from 'react-native-auth0';
 import {WelcomeForm} from '../components/organisms/WelcomeForm';
 import {setClient} from '../store/reducers/client';
+import {setAccount} from '../store/reducers/account';
+import {AccountService} from '../store/services/AccountService';
 import {ClientService} from '../store/services/ClientService';
 import {useDispatch} from 'react-redux';
+import {ClientDto} from '../interfaces/ClientDto';
 
 export const WelcomeScreen = ({navigation}: MyStackScreenProps) => {
   const {user} = useAuth0();
   const dispatch = useDispatch();
-  const service = ClientService();
+  const clientService = ClientService();
+  const accountService = AccountService();
   const loggedIn = user !== undefined && user !== null;
 
   const loginManager = async () => {
     console.log('user :>> ', user);
-    const cli = await service.getClient(user);
+    const cli: ClientDto = (await clientService.getClient(user)) ?? {};
 
     if (cli) {
       if (cli.phone !== undefined && cli.phone !== null) {
         dispatch(setClient(cli));
+        const account = await accountService.getAccount(cli.id ?? '');
+        if (account) {
+          dispatch(setAccount(account));
+        }
         navigation.navigate('MyApp');
       } else {
         navigation.navigate('RegisterFormScreen');
