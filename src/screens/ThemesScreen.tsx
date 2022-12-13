@@ -19,11 +19,12 @@ export const ThemesScreen = ({navigation}: MyStackScreenProps) => {
 
   const localStyles = StyleSheet.create({
     colorIndicator: {
-      width: 80,
-      height: 20,
+      width: 150,
+      height: 18,
       alignSelf: 'center',
       backgroundColor: tempColor,
       borderRadius: 10,
+      marginTop: 2,
     },
   });
 

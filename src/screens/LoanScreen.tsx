@@ -10,8 +10,9 @@ import {AccountService} from '../store/services/AccountService';
 import {CreateLoanDto} from '../interfaces/CreateLoanDto';
 import {useDispatch} from 'react-redux';
 import {setAccount} from '../store/reducers/account';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 
-export const LoanScreen = () => {
+export const LoanScreen = ({navigation}: MyStackScreenProps) => {
   const dispatch = useDispatch();
   const {account} = useSelector((state: RootState) => state.account);
   const [amount, onChangeAmount] = React.useState('');
@@ -24,11 +25,14 @@ export const LoanScreen = () => {
   };
 
   const manageNewLoan = async () => {
-    await service.createLoan(loanDto);
-    const updatedAccount = await service.getAccount(account.cliId);
-    if (updatedAccount) {
-      dispatch(setAccount(updatedAccount));
-    }
+    service.createLoan(loanDto).then(async () => {
+      const updatedAccount = await service.getAccount(account.cliId);
+      if (updatedAccount) {
+        dispatch(setAccount(updatedAccount));
+      }
+    });
+
+    navigation.navigate('Home');
   };
 
   if (account.id === undefined && account.id === null) {

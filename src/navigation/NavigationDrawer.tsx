@@ -21,6 +21,7 @@ export function MyDrawer() {
         unmountOnBlur: true,
         headerStyle: {
           backgroundColor: client.appColor ?? '#1554F6',
+          shadowColor: 'transparent',
         },
       }}
       drawerContent={(props: MyDrawerContentComponentProps) => (

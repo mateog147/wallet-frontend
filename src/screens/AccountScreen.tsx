@@ -15,9 +15,7 @@ export const AccountScreen = () => {
     return (
       <View style={styles.main}>
         <AccountBalance />
-        <View style={styles.listContainer}>
-          <MovementsList />
-        </View>
+        <MovementsList />
       </View>
     );
   }

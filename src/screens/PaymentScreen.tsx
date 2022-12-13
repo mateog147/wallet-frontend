@@ -10,8 +10,9 @@ import {CreatePaymentDto} from '../interfaces/CreatePaymentDto';
 import {AccountService} from '../store/services/AccountService';
 import {useDispatch} from 'react-redux';
 import {setAccount} from '../store/reducers/account';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 
-export const PaymentScreen = () => {
+export const PaymentScreen = ({navigation}: MyStackScreenProps) => {
   const {currencyFormat} = useCurrency();
   const service = AccountService();
   const dispatch = useDispatch();
@@ -28,11 +29,13 @@ export const PaymentScreen = () => {
   };
 
   const manageNewPayment = async () => {
-    await service.createPayment(paymentDto);
-    const updatedAccount = await service.getAccount(account.cliId);
-    if (updatedAccount) {
-      dispatch(setAccount(updatedAccount));
-    }
+    service.createPayment(paymentDto).then(async () => {
+      const updatedAccount = await service.getAccount(account.cliId);
+      if (updatedAccount) {
+        dispatch(setAccount(updatedAccount));
+      }
+    });
+    navigation.navigate('Home');
   };
 
   if (account.id === undefined && account.id === null) {

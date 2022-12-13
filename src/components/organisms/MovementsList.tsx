@@ -1,4 +1,9 @@
-import {ActivityIndicator, FlatList, ListRenderItemInfo} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListRenderItemInfo,
+  View,
+} from 'react-native';
 import React from 'react';
 import {Movement} from '../../interfaces/Movement';
 import {MovementCard} from '../molecules/MovementCard';
@@ -19,7 +24,11 @@ export const MovementsList = () => {
   if (account.id === undefined && account.id === null) {
     return <ActivityIndicator size="large" />;
   } else {
-    const data = account.movements;
-    return <FlatList data={data} renderItem={renderItem} />;
+    let data = [...account.movements];
+    if (data.length === 0) {
+      return <View />;
+    } else {
+      return <FlatList data={data.reverse()} renderItem={renderItem} />;
+    }
   }
 };

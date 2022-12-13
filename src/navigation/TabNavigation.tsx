@@ -25,7 +25,7 @@ export const TabNavigation = () => {
         headerShown: false,
       }}>
       <Tab.Screen
-        name="My App"
+        name="Home"
         component={AccountScreen}
         options={{
           tabBarLabel: 'Account',

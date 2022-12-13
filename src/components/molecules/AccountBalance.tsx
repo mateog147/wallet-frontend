@@ -15,10 +15,8 @@ export const AccountBalance = () => {
       height: '30%',
       paddingLeft: 26,
       paddingTop: 26,
-      backgroundColor: client.appColor ?? '#1554F6',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
-      borderBottomEndRadius: 120,
     },
     balance: {
       color: '#FFFFFF',
@@ -30,6 +28,15 @@ export const AccountBalance = () => {
       color: 'rgba(255, 255, 255, 0.74)',
       marginTop: 5,
     },
+    balanceCircle: {
+      backgroundColor: client.appColor ?? '#1554F6',
+      borderRadius: 100000000,
+      top: -1010,
+      height: 1200,
+      left: -350,
+      position: 'absolute',
+      width: 950,
+    },
   });
 
   if (account.id === undefined && account.id === null) {
@@ -38,6 +45,7 @@ export const AccountBalance = () => {
     const balance = account.balance;
     return (
       <View style={stl.container}>
+        <View style={stl.balanceCircle} />
         <Text style={stl.balance} numberOfLines={1} adjustsFontSizeToFit={true}>
           {currencyFormat(balance ? balance : 0)}
         </Text>
