@@ -1,21 +1,20 @@
-import {View, Text, Image} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {MyDrawerContentComponentProps} from '../../interfaces/MyDrawerContentComponentProps';
 import {Isologo} from '../atoms/Isologo';
 import {IconButton} from '../molecules/IconButton';
 import {styles} from '../../themes/WalletTheme';
+import useSession from '../../hooks/UseSession';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/store';
+import {UserPicture} from '../molecules/UserPicture';
 
 export const SideMenu = ({navigation}: MyDrawerContentComponentProps) => {
+  const {onLogout} = useSession();
+  const {client} = useSelector((state: RootState) => state.client);
   return (
     <View style={styles.sideMenuContainer}>
-      <Image
-        source={{
-          uri: 'https://pbs.twimg.com/profile_images/1282037764481937408/7PrKXHBW_400x400.jpg',
-        }}
-        style={styles.userImage}
-      />
-      <Text style={styles.textAccountName}>Lalo Landa</Text>
-
+      <UserPicture image={client?.photo} name={client?.fullName} />
       <IconButton
         text="Change password"
         icon="settings"
@@ -26,7 +25,14 @@ export const SideMenu = ({navigation}: MyDrawerContentComponentProps) => {
         icon="bookmark"
         action={() => navigation.navigate('ThemesScreen')}
       />
-      <IconButton icon="close" text="Logout" />
+      <IconButton
+        icon="close"
+        text="Logout"
+        action={() => {
+          onLogout();
+          navigation.navigate('home');
+        }}
+      />
 
       <Isologo
         // eslint-disable-next-line react-native/no-inline-styles

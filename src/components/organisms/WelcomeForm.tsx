@@ -5,15 +5,16 @@ import {MainButton} from '../atoms/MainButton';
 
 interface Props {
   action?: () => void;
+  name?: string;
 }
-export const UserLoginForm = ({action}: Props) => {
+export const WelcomeForm = ({action, name}: Props) => {
   // const [text, onChangeText] = React.useState('Email or Username');
 
   return (
     <View style={styles.formContainer}>
-      <Text style={styles.text}>Login or sign up for free.</Text>
+      <Text style={styles.text}>Welcome {name}</Text>
       {/* <LoginInput placeholder={text} action={onChangeText} /> */}
-      <MainButton text="LOGIN / SING UP" action={action} />
+      <MainButton text="CONTINUE" action={action} />
     </View>
   );
 };
@@ -21,7 +22,7 @@ export const UserLoginForm = ({action}: Props) => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 4,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     width: '100%',
     minHeight: 200,

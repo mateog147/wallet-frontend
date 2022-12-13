@@ -1,5 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {RootState} from '../../store/store';
+import {useSelector} from 'react-redux';
 
 interface Props {
   text: string;
@@ -16,9 +18,11 @@ export const MainButton = ({
   color,
   action,
 }: Props) => {
+  const {client} = useSelector((state: RootState) => state.client);
+  const appColor = client.appColor ?? '#1554F6';
   const styles = StyleSheet.create({
     btn: {
-      backgroundColor: backgroundColor ? backgroundColor : '#1554F6',
+      backgroundColor: backgroundColor ? backgroundColor : appColor,
       height: 60,
       width: width ? `${width}%` : '75%',
       alignSelf: 'center',

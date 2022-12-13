@@ -1,21 +1,63 @@
-import {View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import React from 'react';
 import {MainButton} from '../components/atoms/MainButton';
 import {AmountAvailable} from '../components/molecules/AmountAvailable';
 import {FormInput} from '../components/molecules/FormInput';
 import {styles} from '../themes/WalletTheme';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store/store';
+import {AccountService} from '../store/services/AccountService';
+import {CreateLoanDto} from '../interfaces/CreateLoanDto';
+import {useDispatch} from 'react-redux';
+import {setAccount} from '../store/reducers/account';
+import {MyStackScreenProps} from '../interfaces/MyStackScreenProps';
 
-export const LoanScreen = () => {
-  return (
-    <View style={styles.main}>
-      <AmountAvailable number={50000000} />
-      <FormInput
-        icon="credit-card"
-        placeholder="Amount"
-        errorMsg="Amount not Avaiable"
-      />
-      <FormInput icon="message" placeholder="Reason" />
-      <MainButton text="Apply for loan" width={92} />
-    </View>
-  );
+export const LoanScreen = ({navigation}: MyStackScreenProps) => {
+  const dispatch = useDispatch();
+  const {account} = useSelector((state: RootState) => state.account);
+  const [amount, onChangeAmount] = React.useState('');
+  const [reason, onChangeReason] = React.useState('');
+  const service = AccountService();
+  const loanDto: CreateLoanDto = {
+    idIncome: account.id,
+    amount: +amount,
+    reason: reason,
+  };
+
+  const manageNewLoan = async () => {
+    service.createLoan(loanDto).then(async () => {
+      const updatedAccount = await service.getAccount(account.cliId);
+      if (updatedAccount) {
+        dispatch(setAccount(updatedAccount));
+      }
+    });
+
+    navigation.navigate('Home');
+  };
+
+  if (account.id === undefined && account.id === null) {
+    return <ActivityIndicator size="large" />;
+  } else {
+    return (
+      <View style={styles.main}>
+        <AmountAvailable number={account.credit} />
+        <FormInput
+          icon="credit-card"
+          placeholder="Amount"
+          value={amount}
+          onChangeInput={onChangeAmount}
+          isNumeric={true}
+          errorMsg="Amount not Avaiable"
+          isInvalid={account.credit < +amount}
+        />
+        <FormInput
+          icon="message"
+          placeholder="Reason"
+          value={reason}
+          onChangeInput={onChangeReason}
+        />
+        <MainButton text="Apply for loan" width={92} action={manageNewLoan} />
+      </View>
+    );
+  }
 };

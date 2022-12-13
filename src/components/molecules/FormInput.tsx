@@ -8,8 +8,19 @@ interface Props {
   placeholder: string;
   isInvalid?: boolean;
   errorMsg?: string;
+  onChangeInput?: (text: string) => void;
+  value?: string;
+  isNumeric?: boolean;
 }
-export const FormInput = ({icon, placeholder, isInvalid, errorMsg}: Props) => {
+export const FormInput = ({
+  icon,
+  placeholder,
+  isInvalid,
+  errorMsg,
+  value,
+  onChangeInput,
+  isNumeric,
+}: Props) => {
   const styles = StyleSheet.create({
     container: {flexDirection: 'row', alignSelf: 'center', width: '92%'},
     textContainer: {flexDirection: 'column', flex: 1},
@@ -21,7 +32,12 @@ export const FormInput = ({icon, placeholder, isInvalid, errorMsg}: Props) => {
     <View style={styles.container}>
       <IconMI iconName={icon} />
       <View style={styles.textContainer}>
-        <FormTextInput placeholder={placeholder} />
+        <FormTextInput
+          value={value}
+          isNumeric={isNumeric}
+          onChangeAction={onChangeInput}
+          placeholder={placeholder}
+        />
         <Text style={styles.errorTxt}>{errorMsg ? errorMsg : 'Error'}</Text>
       </View>
     </View>
