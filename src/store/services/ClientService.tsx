@@ -1,8 +1,10 @@
 import {UserInfo} from 'react-native-auth0';
+import {ChangeColorDto} from '../../interfaces/ChangeColorDto';
 import {ClientDto} from '../../interfaces/ClientDto';
 import {CreateClientDto} from '../../interfaces/CreateClientDto';
 export const ClientService = () => {
-  const URL = 'http://192.168.1.11:3000/api/v1/client';
+  //const URL = 'http://192.168.1.11:3000/api/v1/client';
+  const URL = 'http://192.168.102.201:3000/api/v1/client';
   return {
     getClient: async (user: UserInfo): Promise<ClientDto | undefined> => {
       try {
@@ -35,6 +37,19 @@ export const ClientService = () => {
         appColor: data.app.color,
       };
       return clientCreated;
+    },
+
+    changeAppColor: async (dto: ChangeColorDto): Promise<ChangeColorDto> => {
+      const response: Response = await fetch(`${URL}/theme`, {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dto),
+      });
+      const data = await response.json();
+      return data;
     },
   };
 };

@@ -3,7 +3,8 @@ import {CreateLoanDto} from '../../interfaces/CreateLoanDto';
 import {CreatePaymentDto} from '../../interfaces/CreatePaymentDto';
 import {Movement} from '../../interfaces/Movement';
 export const AccountService = () => {
-  const URL = 'http://192.168.1.11:3000/api/v1';
+  //const URL = 'http://192.168.1.11:3000/api/v1';
+  const URL = 'http://192.168.102.201:3000/api/v1';
   return {
     getAccount: async (clientId: string): Promise<AccountDto | undefined> => {
       try {

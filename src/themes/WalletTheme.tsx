@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   titlesContainer: {
     alignItems: 'center',
     paddingTop: 10,
-    paddingBottom: 28,
+    paddingBottom: 20,
   },
   h1: {
     fontFamily: 'Roboto',
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '95%',
     flexDirection: 'row',
-    height: 140,
+    height: 130,
     justifyContent: 'space-between',
   },
 
@@ -76,12 +76,20 @@ export const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    padding: 6,
+    padding: 4,
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  loadingIndicator: {
+    position: 'absolute',
+    color: '#0000ff',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
   },
 });

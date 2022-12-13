@@ -5,8 +5,32 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
 
 export const AccountBalance = () => {
+  const {client} = useSelector((state: RootState) => state.client);
   const {account} = useSelector((state: RootState) => state.account);
   const {currencyFormat} = useCurrency();
+
+  const stl = StyleSheet.create({
+    container: {
+      minHeight: 150,
+      height: '30%',
+      paddingLeft: 26,
+      paddingTop: 26,
+      backgroundColor: client.appColor ?? '#1554F6',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      borderBottomEndRadius: 120,
+    },
+    balance: {
+      color: '#FFFFFF',
+      fontSize: 50,
+    },
+    txt: {
+      fontSize: 16,
+      fontWeight: '500',
+      color: 'rgba(255, 255, 255, 0.74)',
+      marginTop: 5,
+    },
+  });
 
   if (account.id === undefined && account.id === null) {
     return <ActivityIndicator size="large" />;
@@ -22,26 +46,3 @@ export const AccountBalance = () => {
     );
   }
 };
-
-const stl = StyleSheet.create({
-  container: {
-    minHeight: 150,
-    height: '30%',
-    paddingLeft: 26,
-    paddingTop: 26,
-    backgroundColor: '#1554F6',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    borderBottomEndRadius: 120,
-  },
-  balance: {
-    color: '#FFFFFF',
-    fontSize: 50,
-  },
-  txt: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: 'rgba(255, 255, 255, 0.74)',
-    marginTop: 5,
-  },
-});

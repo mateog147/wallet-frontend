@@ -7,15 +7,21 @@ import {ThemesScreen} from '../screens/ThemesScreen';
 import {TypedNavigator} from '@react-navigation/native';
 import {SideMenu} from '../components/organisms/SideMenu';
 import {MyDrawerContentComponentProps} from '../interfaces/MyDrawerContentComponentProps';
+import {RootState} from '../store/store';
+import {useSelector} from 'react-redux';
 
 const Drawer: TypedNavigator<any, any, any, any, any> = createDrawerNavigator();
 
 export function MyDrawer() {
+  const {client} = useSelector((state: RootState) => state.client);
   return (
     <Drawer.Navigator
       initialRouteName="home"
       screenOptions={{
         unmountOnBlur: true,
+        headerStyle: {
+          backgroundColor: client.appColor ?? '#1554F6',
+        },
       }}
       drawerContent={(props: MyDrawerContentComponentProps) => (
         <SideMenu {...props} />
@@ -27,9 +33,6 @@ export function MyDrawer() {
           headerTintColor: 'white',
           title: 'MyApp',
           drawerItemStyle: {display: 'none'},
-          headerStyle: {
-            backgroundColor: '#1554F6',
-          },
         }}
       />
       <Drawer.Screen
@@ -45,9 +48,6 @@ export function MyDrawer() {
         options={{
           headerTintColor: 'white',
           title: 'MyApp',
-          headerStyle: {
-            backgroundColor: '#1554F6',
-          },
         }}
         name="ChangePasswordScreen"
         component={ChangePasswordScreen}
@@ -56,9 +56,6 @@ export function MyDrawer() {
         options={{
           headerTintColor: 'white',
           title: 'MyApp',
-          headerStyle: {
-            backgroundColor: '#1554F6',
-          },
         }}
         name="ThemesScreen"
         component={ThemesScreen}

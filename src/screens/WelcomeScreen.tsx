@@ -38,7 +38,13 @@ export const WelcomeScreen = ({navigation}: MyStackScreenProps) => {
   };
 
   if (!loggedIn) {
-    return <ActivityIndicator size="large" />;
+    return (
+      <ActivityIndicator
+        size={120}
+        style={styles.loadingIndicator}
+        color="#1554F6"
+      />
+    );
   } else {
     return (
       <View style={styles.main}>
