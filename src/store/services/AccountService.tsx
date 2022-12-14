@@ -2,13 +2,18 @@ import {AccountDto} from '../../interfaces/AccountDto';
 import {CreateLoanDto} from '../../interfaces/CreateLoanDto';
 import {CreatePaymentDto} from '../../interfaces/CreatePaymentDto';
 import {Movement} from '../../interfaces/Movement';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/store';
 export const AccountService = () => {
-  //const URL = 'http://192.168.1.11:3000/api/v1';
-  const URL = 'http://192.168.102.201:3000/api/v1';
+  const URL = 'http://192.168.1.11:3000/api/v1';
+  const {token} = useSelector((state: RootState) => state.token);
   return {
     getAccount: async (clientId: string): Promise<AccountDto | undefined> => {
       try {
-        const response: Response = await fetch(`${URL}/account/${clientId}`);
+        const response: Response = await fetch(`${URL}/account/${clientId}`, {
+          method: 'GET',
+          headers: {Authorization: `Bearer ${token}`},
+        });
         const data: AccountDto = await response.json();
         return data;
       } catch (error) {
@@ -23,6 +28,7 @@ export const AccountService = () => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(dto),
       });
@@ -40,6 +46,7 @@ export const AccountService = () => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(dto),
       });
