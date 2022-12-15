@@ -5,5 +5,5 @@ export interface Movement {
   reason?: string;
   amount?: number;
   fees?: number;
-  dateTime?: Date;
+  dateTime?: string;
 }

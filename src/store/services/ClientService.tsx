@@ -2,13 +2,19 @@ import {UserInfo} from 'react-native-auth0';
 import {ChangeColorDto} from '../../interfaces/ChangeColorDto';
 import {ClientDto} from '../../interfaces/ClientDto';
 import {CreateClientDto} from '../../interfaces/CreateClientDto';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/store';
+
 export const ClientService = () => {
-  //const URL = 'http://192.168.1.11:3000/api/v1/client';
-  const URL = 'http://192.168.102.201:3000/api/v1/client';
+  const URL = 'http://192.168.1.11:3000/api/v1/client';
+  const {token} = useSelector((state: RootState) => state.token);
   return {
     getClient: async (user: UserInfo): Promise<ClientDto | undefined> => {
       try {
-        const response: Response = await fetch(`${URL}/${user.email}`);
+        const response: Response = await fetch(`${URL}/${user.email}`, {
+          method: 'GET',
+          headers: {Authorization: `Bearer ${token}`},
+        });
         console.log(response.status);
         const data: ClientDto = await response.json();
         return data;
@@ -45,6 +51,7 @@ export const ClientService = () => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(dto),
       });

@@ -1,17 +1,19 @@
-import {useAuth0} from 'react-native-auth0';
+import {Credentials, useAuth0} from 'react-native-auth0';
 import {useDispatch} from 'react-redux';
 import {setClient} from '../store/reducers/client';
 import {setAccount} from '../store/reducers/account';
+import {setToken} from '../store/reducers/token';
 import {AccountDto} from '../interfaces/AccountDto';
 import {ClientDto} from '../interfaces/ClientDto';
+import jwt_decode from 'jwt-decode';
+
 const useSession = () => {
   const dispatch = useDispatch();
   const {authorize, clearSession, getCredentials} = useAuth0();
   const onLogin = async () => {
     try {
       const test = await authorize({scope: 'openid profile email'});
-      //const res = await getCredentials();
-      //console.log(JSON.stringify(res));
+      await onGetCredentials();
       return await test;
     } catch (e) {
       console.log(e);
@@ -23,10 +25,20 @@ const useSession = () => {
       await clearSession();
       dispatch(setClient({} as ClientDto));
       dispatch(setAccount({} as AccountDto));
+      dispatch(setToken(''));
     } catch (e) {
       console.log('Log out cancelled');
     }
   };
-  return {onLogin, onLogout};
+
+  const onGetCredentials = async (): Promise<boolean> => {
+    const credentials: Credentials = await getCredentials();
+    const userJson = jwt_decode<any>(credentials.idToken);
+    const expiresIn = new Date(userJson.expt);
+    const newToken = credentials.idToken;
+    dispatch(setToken(newToken));
+    return expiresIn < new Date();
+  };
+  return {onLogin, onLogout, onGetCredentials};
 };
 export default useSession;

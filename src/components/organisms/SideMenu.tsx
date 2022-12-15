@@ -21,7 +21,7 @@ export const SideMenu = ({navigation}: MyDrawerContentComponentProps) => {
         action={() => navigation.navigate('ChangePasswordScreen')}
       />
       <IconButton
-        text="Change App Theme"
+        text="Change App Color"
         icon="bookmark"
         action={() => navigation.navigate('ThemesScreen')}
       />
