@@ -49,16 +49,19 @@ export const ThemesScreen = ({navigation}: MyStackScreenProps) => {
         <ThemeCard
           label="Arts & Culture"
           icon="theater-comedy"
+          color="#c986cd"
           action={() => onChangeColor('#c986cd')}
         />
         <ThemeCard
           label="Food & Drinks"
           icon="local-pizza"
+          color="#ff5a16"
           action={() => onChangeColor('#ff5a16')}
         />
         <ThemeCard
           label="Gaming"
           icon="videogame-asset"
+          color="#0b3068"
           action={() => onChangeColor('#0b3068')}
         />
       </View>
@@ -67,16 +70,19 @@ export const ThemesScreen = ({navigation}: MyStackScreenProps) => {
         <ThemeCard
           label="Music"
           icon="music-note"
+          color="#ff95b9"
           action={() => onChangeColor('#ff95b9')}
         />
         <ThemeCard
           label="Nature"
           icon="eco"
+          color="#65b30a"
           action={() => onChangeColor('#65b30a')}
         />
         <ThemeCard
           label="Activity"
           icon="sports-soccer"
+          color="#666262"
           action={() => onChangeColor('#666262')}
         />
       </View>
@@ -85,16 +91,19 @@ export const ThemesScreen = ({navigation}: MyStackScreenProps) => {
         <ThemeCard
           label="Fashion"
           icon="shopping-bag"
+          color="#9015a5"
           action={() => onChangeColor('#9015a5')}
         />
         <ThemeCard
           label="Technology"
           icon="computer"
+          color="#c50000"
           action={() => onChangeColor('#c50000')}
         />
         <ThemeCard
           label="Travel"
           icon="airplanemode-active"
+          color="#938401"
           action={() => onChangeColor('#938401')}
         />
       </View>

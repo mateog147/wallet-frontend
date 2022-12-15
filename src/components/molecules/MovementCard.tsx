@@ -2,13 +2,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {CircleImage} from '../atoms/CircleImage';
 import useCurrency from '../../hooks/UseCurrency';
+import useFormatDate from '../../hooks/UseFormatDate';
 
 interface Props {
   accUserId: string;
   accIdIncome?: string;
   reason?: string;
   amount?: number;
-  dateTime?: Date;
+  dateTime?: string;
 }
 
 export const MovementCard = ({
@@ -19,6 +20,7 @@ export const MovementCard = ({
   accUserId,
 }: Props) => {
   const {currencyFormat} = useCurrency();
+  const {formatDate} = useFormatDate();
   const stl = StyleSheet.create({
     item: {
       height: 72,
@@ -48,7 +50,7 @@ export const MovementCard = ({
       color: accIdIncome === accUserId ? 'green' : 'red',
     },
   });
-
+  const date: string = dateTime ? formatDate(dateTime) : '';
   return (
     <View style={stl.item}>
       <CircleImage src={require('../../assets/images/logo.png')} />
@@ -56,7 +58,7 @@ export const MovementCard = ({
         <Text style={stl.title} numberOfLines={1}>
           {reason}
         </Text>
-        <Text style={stl.date}>{dateTime}</Text>
+        <Text style={stl.date}>{date}</Text>
       </View>
 
       <Text style={stl.amount}>{currencyFormat(amount ? amount : 0)}</Text>

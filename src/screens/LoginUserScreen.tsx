@@ -9,11 +9,18 @@ import {useAuth0} from 'react-native-auth0';
 
 export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
   const {user} = useAuth0();
-  const {onLogin} = useSession();
+  const {onLogin, onGetCredentials, onLogout} = useSession();
   const loggedIn = user !== undefined && user !== null;
 
   useEffect(() => {
     if (loggedIn) {
+      onGetCredentials().then(isExpired => {
+        if (isExpired) {
+          onLogout();
+          Alert.alert('Session expired');
+          navigation.navigate('Launch');
+        }
+      });
       navigation.navigate('WelcomeScreen');
     }
   });

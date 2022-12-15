@@ -25,10 +25,11 @@ export const MovementsList = () => {
     return <ActivityIndicator size="large" />;
   } else {
     let data = [...account.movements];
+    data = data.reverse();
     if (data.length === 0) {
       return <View />;
     } else {
-      return <FlatList data={data.reverse()} renderItem={renderItem} />;
+      return <FlatList data={data} renderItem={renderItem} />;
     }
   }
 };
