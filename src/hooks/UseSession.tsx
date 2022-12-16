@@ -34,10 +34,11 @@ const useSession = () => {
   const onGetCredentials = async (): Promise<boolean> => {
     const credentials: Credentials = await getCredentials();
     const userJson = jwt_decode<any>(credentials.idToken);
-    const expiresIn = new Date(userJson.expt);
+    const expiresIn: number = userJson.exp;
     const newToken = credentials.idToken;
     dispatch(setToken(newToken));
-    return expiresIn < new Date();
+    const flag = expiresIn > new Date().getTime();
+    return flag;
   };
   return {onLogin, onLogout, onGetCredentials};
 };

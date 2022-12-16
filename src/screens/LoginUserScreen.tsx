@@ -18,7 +18,7 @@ export const LoginUserScreen = ({navigation}: MyStackScreenProps) => {
         if (isExpired) {
           onLogout();
           Alert.alert('Session expired');
-          navigation.navigate('Launch');
+          navigation.navigate('LoginUserScreen');
         }
       });
       navigation.navigate('WelcomeScreen');

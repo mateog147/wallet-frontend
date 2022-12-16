@@ -1,0 +1,36 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_STACK_OVERFLOW (0xc00000fd) at pc=0x00007ffb492660d6, pid=16768, tid=18772
+#
+# JRE version: OpenJDK Runtime Environment Temurin-17.0.5+8 (17.0.5+8) (build 17.0.5+8)
+# Java VM: OpenJDK 64-Bit Server VM Temurin-17.0.5+8 (17.0.5+8, mixed mode, tiered, compressed oops, compressed class ptrs, parallel gc, windows-amd64)
+# Problematic frame:
+# V  [jvm.dll+0x3860d6]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://github.com/adoptium/adoptium-support/issues
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: --add-modules=ALL-SYSTEM --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/sun.nio.fs=ALL-UNNAMED -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Djava.import.generatesMetadataFilesAtProjectRoot=false -Dfile.encoding=utf8 -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable -javaagent:c:\Users\mateo.gutierrez\.vscode\extensions\redhat.java-1.13.0-win32-x64\lombok\lombok-1.18.24.jar -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=c:\Users\mateo.gutierrez\AppData\Roaming\Code\User\workspaceStorage\79c41b781945ef63bc605b5794491a2c\redhat.java c:\Users\mateo.gutierrez\.vscode\extensions\redhat.java-1.13.0-win32-x64\server\plugins\org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar -configuration c:\Users\mateo.gutierrez\AppData\Roaming\Code\User\globalStorage\redhat.java\1.13.0\config_win -data c:\Users\mateo.gutierrez\AppData\Roaming\Code\User\workspaceStorage\79c41b781945ef63bc605b5794491a2c\redhat.java\jdt_ws
+
+Host: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, 8 cores, 15G,  Windows 11 , 64 bit Build 22621 (10.0.22621.963)
+Time: Thu Dec 15 10:41:15 2022 Hora est. Pacífico, Sudamérica elapsed time: 67128.147151 seconds (0d 18h 38m 48s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000013a81a94e90):  JavaThread "SCR Component Registry" daemon [_thread_in_vm, id=18772, stack(0x00000031b1100000,0x00000031b1200000)]
+
+Stack: [0x00000031b1100000,0x00000031b1200000],  sp=0x00000031b11ff970,  free space=1022k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x3860d6]
+V  [jvm.dll+0x676a62]
+V  [jvm.dll+0x386d2b]
+V  [jvm.dll+0x386fb7]
+V  [jvm.dll+0x40cac1]
+V  [jvm.dll+0x7e727b]
+V  [jvm.dll+0x7e17ea]
